@@ -32,7 +32,7 @@ namespace Torcidas.UI
             // Database
             services
                 .AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("Default")))
-                .AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+                .AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             // Services
             services
