@@ -8,11 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Torcidas.Core\Torcidas.Core.csproj" />
-    <ProjectReference Include="..\Torcidas.UI\Torcidas.UI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-	  <Folder Include="Services\" />
+    <ProjectReference Include="..\Torcidas.Infra\Torcidas.Infra.csproj" />
   </ItemGroup>
 
 </Project>
