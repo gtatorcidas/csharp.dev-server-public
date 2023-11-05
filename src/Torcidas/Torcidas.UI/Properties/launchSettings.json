@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Torcidas.UI": {
+      "commandName": "Project"
+    },
+    "Start Samp Server": {
+      "commandName": "Executable",
+      "executablePath": ".\\samp-server.exe",
+      "workingDirectory": "..\\..\\..\\env"
+    }
+  }
+}
