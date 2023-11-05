@@ -26,7 +26,7 @@ namespace Torcidas.Core.Systems
 
             player.AddComponent<FpsComponent>();
             var positionOfTextDraw = new Vector2(40, 315);
-            player.GetComponent<FpsComponent>().SetupFpsTextDraw(worldService.CreatePlayerTextDraw(player.Entity, positionOfTextDraw, "FDP"));
+            player.GetComponent<FpsComponent>().SetupFpsTextDraw(worldService.CreatePlayerTextDraw(player.Entity, positionOfTextDraw, ""));
 
         }
 

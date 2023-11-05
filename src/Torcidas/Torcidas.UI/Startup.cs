@@ -37,11 +37,13 @@ namespace Torcidas.UI
             // Services
             services
                 .AddTransient<IServerConfigService, ServerConfigService>()
+                .AddTransient<IFpsService, FpsService>()
                 .AddSystemsInAssembly();
 
             // Systems
             services
-                .AddSystem<ServerConfigSystem>();
+                .AddSystem<ServerConfigSystem>()
+                .AddSystem<FpsSystem>();
 
         }
 

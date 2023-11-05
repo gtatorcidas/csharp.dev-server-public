@@ -5,7 +5,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <OutputPath>..\..\..\env\gamemode</OutputPath>
     <BaseOutputPath>..\..\..\env\gamemode</BaseOutputPath>
-    <_FunctionsSkipCleanOutput>true</_FunctionsSkipCleanOutput>
 	  <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
 
@@ -21,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\Torcidas.Application\Torcidas.Application.csproj" />
+    <ProjectReference Include="..\Torcidas.Application\Torcidas.Application.csproj" />
     <ProjectReference Include="..\Torcidas.Core\Torcidas.Core.csproj" />
     <ProjectReference Include="..\Torcidas.Infra\Torcidas.Infra.csproj" />
   </ItemGroup>
