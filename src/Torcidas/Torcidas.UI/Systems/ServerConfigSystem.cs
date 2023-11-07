@@ -1,7 +1,7 @@
-﻿using System;
-using SampSharp.Entities;
+﻿using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
-using Torcidas.Core.Interfaces.Services;
+
+using Torcidas.Application.Services.Interfaces;
 
 namespace Torcidas.UI.Systems
 {
@@ -16,9 +16,7 @@ namespace Torcidas.UI.Systems
         }
 
         [Event]
-        public void OnPlayerConnect(Player player) => _serverConfigService.CheckPlayerGameClient(player);
-
-        
+        public void OnPlayerConnect(Player player) => _serverConfigService.OnPlayerConnectHandler(player);
 
     }
 }

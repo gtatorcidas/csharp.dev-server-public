@@ -1,14 +1,12 @@
 ﻿using SampSharp.Entities;
+
 using Torcidas.Core.Enums;
 
 namespace Torcidas.Core.Components
 {
-
-
-    public class ConfigComponent : Component
+    public class ServerConfigComponent : Component
     {
-
-        public ConfigComponent() { }
+        public ServerConfigComponent() { }
 
         public EClientPlatform Platform { get; set; }
 

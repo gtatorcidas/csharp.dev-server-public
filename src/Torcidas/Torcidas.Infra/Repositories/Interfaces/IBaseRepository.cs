@@ -1,4 +1,4 @@
-﻿namespace Torcidas.Core.Interfaces.Repositories
+﻿namespace Torcidas.Infra.Repositories.Interfaces
 {
     public interface IBaseRepository<T> where T : class
     {

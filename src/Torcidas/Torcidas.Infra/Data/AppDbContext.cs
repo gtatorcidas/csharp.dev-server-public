@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Torcidas.Infra.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-
-
-       public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+       public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
        {
 
        }

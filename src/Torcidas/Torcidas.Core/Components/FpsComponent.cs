@@ -6,7 +6,6 @@ namespace Torcidas.Core.Components
 {
     public class FpsComponent : Component
     {
-
         public FpsComponent()
         {
             Timer = new Stopwatch();

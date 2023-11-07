@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace Torcidas.Infra.Data
 {
-    public class ApplicationDbContextFactory: IDesignTimeDbContextFactory<ApplicationDbContext>
+    public class AppDbContextFactory: IDesignTimeDbContextFactory<AppDbContext>
     {
-        public ApplicationDbContext CreateDbContext(string[] args) {
+        public AppDbContext CreateDbContext(string[] args) {
 
-            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            var builder = new DbContextOptionsBuilder<AppDbContext>();
 
             var configuration = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
@@ -17,7 +17,7 @@ namespace Torcidas.Infra.Data
 
             builder.UseNpgsql(configuration.GetConnectionString("Default"));
 
-            return new ApplicationDbContext(builder.Options);
+            return new AppDbContext(builder.Options);
         }
     }
 }

@@ -1,13 +1,58 @@
 ﻿using SampSharp.Entities.SAMP;
+
+using Torcidas.Core.Enums;
 using Torcidas.Core.Components;
-using Torcidas.Core.Interfaces.Services;
+using Torcidas.Application.Services.Interfaces;
 
 namespace Torcidas.Application.Services
 {
     public class FpsService: IFpsService
     {
 
-        public void OnPlayerFpsUpdate(Player player)
+        private readonly IWorldService _worldService;
+
+        public FpsService(IWorldService worldService) { 
+        
+            _worldService = worldService;
+        }
+        
+
+        public void OnPlayerSpawnHandler(Player player)
+        {
+            var component = player.GetComponent<FpsComponent>();
+
+            if (component != null) return;
+
+            player.AddComponent<FpsComponent>();
+
+            var positionOfTextDraw = new Vector2(40, 315);
+
+            player.GetComponent<FpsComponent>().SetupFpsTextDraw(_worldService.CreatePlayerTextDraw(player.Entity, positionOfTextDraw, ""));
+
+        }
+
+        public void OnPlayerUpdateHandler(ServerConfigComponent serverConfigComponent)
+        {
+            var player = serverConfigComponent.GetComponent<Player>();
+
+            var configComponent = player.GetComponent<ServerConfigComponent>();
+
+            if (configComponent.Platform == EClientPlatform.PC) OnPlayerFpsUpdateHandler(player);
+
+            if (configComponent.Platform != EClientPlatform.PC)
+            {
+                var fpsComponent = player.GetComponent<FpsComponent>();
+
+                if (fpsComponent != null)
+                {
+                    fpsComponent.FpsTextDraw.Destroy();
+                    fpsComponent.Destroy();
+                }
+
+            }
+        }
+
+        private void OnPlayerFpsUpdateHandler(Player player)
         {
 
             var component = player.GetComponent<FpsComponent>();
@@ -58,5 +103,7 @@ namespace Torcidas.Application.Services
 
             return component.Fps;
         }
+
+       
     }
 }

@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Torcidas.Core.Interfaces.Repositories;
+
 using Torcidas.Infra.Data;
+using Torcidas.Infra.Repositories.Interfaces;
 
 namespace Torcidas.Infra.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AppDbContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public BaseRepository(ApplicationDbContext context)
+        public BaseRepository(AppDbContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();

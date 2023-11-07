@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <Folder Include="Entities\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 

@@ -7,13 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 
-using Torcidas.Application.Services;
-using Torcidas.Core.Interfaces.Repositories;
-using Torcidas.Core.Interfaces.Services;
-using Torcidas.Core.Systems;
-using Torcidas.Infra.Data;
-using Torcidas.Infra.Repositories;
 using Torcidas.UI.Systems;
+using Torcidas.Application;
+using Torcidas.Application.Services;
+using Torcidas.Application.Services.Interfaces;
 
 namespace Torcidas.UI
 {
@@ -29,10 +26,8 @@ namespace Torcidas.UI
                 .Build();
             services.AddSingleton<IConfiguration>(configuration);
 
-            // Database
-            services
-                .AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("Default")))
-                .AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            // Application Layer Dependency Injection Manager
+            AppDependencyManager.Configure(services, configuration.GetConnectionString("Default"));
 
             // Services
             services

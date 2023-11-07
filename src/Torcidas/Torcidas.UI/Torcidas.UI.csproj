@@ -21,8 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Torcidas.Application\Torcidas.Application.csproj" />
-    <ProjectReference Include="..\Torcidas.Core\Torcidas.Core.csproj" />
-    <ProjectReference Include="..\Torcidas.Infra\Torcidas.Infra.csproj" />
   </ItemGroup>
 
 </Project>
