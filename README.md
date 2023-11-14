@@ -4,6 +4,7 @@
 ### Pré Requisitos 🖥
 - Visual studio 2022 com .NET Core
 - .NET Core 6
+- .Net Core 6 Runtime x86
 
 
 ### Como fazer a configuração do projeto?
