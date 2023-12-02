@@ -1,6 +1,6 @@
 ﻿using SampSharp.Entities.SAMP;
 
-using Torcidas.Core.Enums;
+using Torcidas.Domain.Enums;
 using Torcidas.Core.Components;
 using Torcidas.Application.Services.Interfaces;
 
@@ -8,15 +8,19 @@ namespace Torcidas.Application.Services
 {
     public class FpsService: IFpsService
     {
-
+        #region Properties
         private readonly IWorldService _worldService;
+        #endregion
 
+        #region Constructors
         public FpsService(IWorldService worldService) { 
         
             _worldService = worldService;
         }
-        
 
+        #endregion
+
+        #region Public Methods
         public void OnPlayerSpawnHandler(Player player)
         {
             var component = player.GetComponent<FpsComponent>();
@@ -37,9 +41,9 @@ namespace Torcidas.Application.Services
 
             var configComponent = player.GetComponent<ServerConfigComponent>();
 
-            if (configComponent.Platform == EClientPlatform.PC) OnPlayerFpsUpdateHandler(player);
+            if (configComponent.Platform == ClientPlatformEnum.PersonalComputer) OnPlayerFpsUpdateHandler(player);
 
-            if (configComponent.Platform != EClientPlatform.PC)
+            if (configComponent.Platform != ClientPlatformEnum.PersonalComputer)
             {
                 var fpsComponent = player.GetComponent<FpsComponent>();
 
@@ -52,6 +56,9 @@ namespace Torcidas.Application.Services
             }
         }
 
+        #endregion
+
+        #region Private Methods
         private void OnPlayerFpsUpdateHandler(Player player)
         {
 
@@ -104,6 +111,6 @@ namespace Torcidas.Application.Services
             return component.Fps;
         }
 
-       
+        #endregion
     }
 }

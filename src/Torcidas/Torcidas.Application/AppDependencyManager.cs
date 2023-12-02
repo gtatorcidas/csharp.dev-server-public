@@ -9,11 +9,19 @@ namespace Torcidas.Application
 {
     public class AppDependencyManager
     {
+        #region Public Methods
         public static void Configure(IServiceCollection services, string databaseConnection)
         {
-            services
-                .AddDbContext<AppDbContext>(options => options.UseNpgsql(databaseConnection))
-                .AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<IDbContext, AppDbContext>(options => options
+                    .UseNpgsql(databaseConnection)
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+                 )
+                .AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>))
+                .AddScoped(typeof(IUserRepository), typeof(UserRepository));
         }
+
+        #endregion
     }
 }

@@ -6,10 +6,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
+using SampSharp.Entities.SAMP.Commands;
 
-using Torcidas.UI.Systems;
+using Torcidas.Core;
 using Torcidas.Application;
+using Torcidas.UI.Systems.User;
+using Torcidas.UI.Systems.Server;
 using Torcidas.Application.Services;
+using Torcidas.Application.Services.Overrides;
 using Torcidas.Application.Services.Interfaces;
 
 namespace Torcidas.UI
@@ -26,18 +30,29 @@ namespace Torcidas.UI
                 .Build();
             services.AddSingleton<IConfiguration>(configuration);
 
+            // Logger
+            AppLoggerManager.Configure(services);
+
+            // Auto Mapper
+            services.AddAutoMapper(typeof (ProfileMapper));
+
             // Application Layer Dependency Injection Manager
             AppDependencyManager.Configure(services, configuration.GetConnectionString("Default"));
 
             // Services
             services
+                .AddTransient<ILoggerService, LoggerService>()
+                .AddTransient<IPlayerCommandService, AppPlayerCommandService>()
                 .AddTransient<IServerConfigService, ServerConfigService>()
+                .AddTransient<IGlobalManagerService, GlobalManagerService>()
+                .AddTransient<IUserService, UserService>()
                 .AddTransient<IFpsService, FpsService>()
                 .AddSystemsInAssembly();
 
             // Systems
             services
                 .AddSystem<ServerConfigSystem>()
+                .AddSystem<UserSystem>()
                 .AddSystem<FpsSystem>();
 
         }

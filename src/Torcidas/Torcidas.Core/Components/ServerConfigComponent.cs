@@ -1,6 +1,6 @@
 ﻿using SampSharp.Entities;
 
-using Torcidas.Core.Enums;
+using Torcidas.Domain.Enums;
 
 namespace Torcidas.Core.Components
 {
@@ -8,7 +8,7 @@ namespace Torcidas.Core.Components
     {
         public ServerConfigComponent() { }
 
-        public EClientPlatform Platform { get; set; }
+        public ClientPlatformEnum Platform { get; set; }
 
     }
 }

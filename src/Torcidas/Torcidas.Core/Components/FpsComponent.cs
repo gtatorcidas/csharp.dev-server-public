@@ -6,10 +6,13 @@ namespace Torcidas.Core.Components
 {
     public class FpsComponent : Component
     {
-        public FpsComponent()
-        {
-            Timer = new Stopwatch();
-        }
+        public int Fps { get; set; }
+
+        public int LastDrunkLevel { get; set; }
+
+        public PlayerTextDraw FpsTextDraw { get; set; }
+
+        public Stopwatch Timer { get; set; } = new();
 
         public void SetupFpsTextDraw(PlayerTextDraw fpsTextDraw)
         {
@@ -31,13 +34,5 @@ namespace Torcidas.Core.Components
         {
             FpsTextDraw.Destroy();
         }
-
-        public int Fps { get; set; }
-
-        public int LastDrunkLevel { get; set; }
-
-        public PlayerTextDraw FpsTextDraw { get; set; }
-
-        public Stopwatch Timer { get; set; }
     }
 }

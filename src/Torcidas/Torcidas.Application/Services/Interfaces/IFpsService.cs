@@ -1,4 +1,5 @@
 ﻿using SampSharp.Entities.SAMP;
+
 using Torcidas.Core.Components;
 
 namespace Torcidas.Application.Services.Interfaces

@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres-network
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@postgres.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-db
+    networks:
+      - postgres-network
+
+networks:
+  postgres-network:
+    driver: bridge
