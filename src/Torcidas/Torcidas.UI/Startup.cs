@@ -45,6 +45,7 @@ namespace Torcidas.UI
                 .AddTransient<IPlayerCommandService, AppPlayerCommandService>()
                 .AddTransient<IServerConfigService, ServerConfigService>()
                 .AddTransient<IGlobalManagerService, GlobalManagerService>()
+                .AddTransient<IServerHudService, ServerHudService>()
                 .AddTransient<IUserService, UserService>()
                 .AddTransient<IFpsService, FpsService>()
                 .AddSystemsInAssembly();

@@ -14,17 +14,19 @@ namespace Torcidas.Application.Services
         private readonly IEntityManager _entityManager;
         private readonly IUserService _userService;
         private readonly IServerService _serverService;
+        private readonly ITimerService _timerService;
         private readonly IServerHudService _serverHudService;
 
         #endregion
 
         #region Constructors
         public ServerConfigService(IEntityManager entityManager, IUserService userService, 
-            IServerService serverService, IServerHudService serverHudService)
+            IServerService serverService, ITimerService timerService, IServerHudService serverHudService)
         {
             _entityManager = entityManager;
             _userService = userService;
             _serverService = serverService;
+            _timerService = timerService;
             _serverHudService = serverHudService;
         }
         #endregion
@@ -36,34 +38,47 @@ namespace Torcidas.Application.Services
 
             if (player.IsNpc) return;
 
-            if (string.IsNullOrEmpty(player.Name) ||
+            if (string.IsNullOrEmpty(player.Name) ||        
                 string.IsNullOrEmpty(player.Ip)) player.Kick();
 
             var user = _userService.GetUserByUserName(player.Name);
 
-            if (user is not null)
+            
+            Vector3 spawnPosition;
+            int skinId;
+            int soundId;
+            
+            if (user.Id > 0)
             {
+                skinId = 1;
+                soundId = 1057;
                 player.AddComponent<UserComponent>(user);
-
-                player.PlaySound(1057);
-
-                player.ToggleSpectating(false);
-
-                player.GetComponent<UserComponent>().IsLogged = true;
-
-                player.SetSpawnInfo(0, 1, new Vector3(1123.91, -2036.79, 69.886), 0);
-
-                player.Spawn();
-
+                spawnPosition = new Vector3(1123.91, -2036.79, 69.886);
             }
             else
             {
-                player.PlaySound(1085);
+                skinId = 0;
+                soundId = 1085;
+                spawnPosition = new Vector3(1037.96, -1338.38, 13.727);
+            }
+            
+            TimerReference? timer = null;
 
+            timer = _timerService.Start((_) =>
+            {
+                player.PlaySound(soundId);
                 player.ToggleSpectating(false);
+                player.ToggleControllable(false);
+
+                player.GetComponent<UserComponent>().IsLogged = true;
+
+                player.SetSpawnInfo(player.Entity, skinId, spawnPosition , 0);
 
                 player.Spawn();
-            }
+
+                _timerService.Stop(timer);
+
+            }, TimeSpan.FromSeconds(2));
 
             var clientId = player.Gpci;
 
