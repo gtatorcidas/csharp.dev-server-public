@@ -48,12 +48,13 @@ namespace Torcidas.Application.Services
             int skinId;
             int soundId;
             
-            if (user.Id > 0)
+            if (user is not null)
             {
                 skinId = 1;
                 soundId = 1057;
-                player.AddComponent<UserComponent>(user);
                 spawnPosition = new Vector3(1123.91, -2036.79, 69.886);
+                var component = player.AddComponent<UserComponent>(user);
+                component.IsLogged = true;
             }
             else
             {
@@ -69,8 +70,6 @@ namespace Torcidas.Application.Services
                 player.PlaySound(soundId);
                 player.ToggleSpectating(false);
                 player.ToggleControllable(false);
-
-                player.GetComponent<UserComponent>().IsLogged = true;
 
                 player.SetSpawnInfo(player.Entity, skinId, spawnPosition , 0);
 
@@ -97,7 +96,7 @@ namespace Torcidas.Application.Services
             
             var usersList = playersList
                 .Select(x => x.GetComponent<UserComponent>())
-                .Where(x => x.GetUser() is { } userDto).ToList();
+                .Where(x => x?.GetUser() != null).ToList();
 
             foreach (var userComponent in usersList.Where(userComponent => userComponent.IsLogged))
             {
