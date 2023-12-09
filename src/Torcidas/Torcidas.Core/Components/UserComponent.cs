@@ -1,13 +1,13 @@
 ﻿using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 
-using Torcidas.Core.DTOs;
+using Torcidas.Domain.Entities;
 
 namespace Torcidas.Core.Components
 {
     public class UserComponent: Component
     {
-        private UserDTO User { get; set; }
+        private User User { get; set; }
 
         public bool IsLogged { get; set; }
 
@@ -21,18 +21,18 @@ namespace Torcidas.Core.Components
 
         public bool HasIndicator {  get; set; }
 
-        public UserComponent(UserDTO user)
+        public UserComponent(User user)
         {
             User = user;
             IsLogged = false;
         }
 
-        public UserDTO GetUser()
+        public User GetUser()
         {
             return User;
         }
 
-        public void UpdateUserOnComponent(UserDTO user)
+        public void UpdateUserOnComponent(User user)
         {
             User = user;
         }

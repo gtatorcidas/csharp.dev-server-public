@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Reflection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +7,6 @@ using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 using SampSharp.Entities.SAMP.Commands;
 
-using Torcidas.Core;
 using Torcidas.Application;
 using Torcidas.UI.Systems.User;
 using Torcidas.UI.Systems.Server;
@@ -32,9 +30,6 @@ namespace Torcidas.UI
 
             // Logger
             AppLoggerManager.Configure(services);
-
-            // Auto Mapper
-            services.AddAutoMapper(typeof (ProfileMapper));
 
             // Application Layer Dependency Injection Manager
             AppDependencyManager.Configure(services, configuration.GetConnectionString("Default"));

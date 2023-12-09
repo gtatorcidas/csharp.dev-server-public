@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using SampSharp.Entities;
+﻿using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 
-using Torcidas.Core.DTOs;
 using Torcidas.Core.Components;
 using Torcidas.Domain.Entities;
 using Torcidas.Infra.Repositories.Interfaces;
@@ -19,39 +17,32 @@ namespace Torcidas.Application.Services
         private readonly IGlobalManagerService _globalManagerService;
         private readonly IEntityManager _entityManager;
         private readonly ITimerService _timerService;
-        private readonly IMapper _mapper;
 
         #endregion
 
         #region Constructors
 
         public UserService(IUserRepository userRepository, IGlobalManagerService globalManagerService, 
-            IEntityManager entityManager, ITimerService timerService, 
-            IMapper mapper)
+            IEntityManager entityManager, ITimerService timerService)
         {
             _userRepository = userRepository;
             _globalManagerService = globalManagerService;
             _entityManager = entityManager;
             _timerService = timerService;
-            _mapper = mapper;
         }
 
         #endregion
 
         #region Entity Framework Methods
 
-        public UserDTO GetUserByUserName(string username)
+        public User GetUserByUserName(string username)
         {
-            var user = _userRepository.GetByUserName(username);
-
-            return _mapper.Map<UserDTO>(user);
+           return _userRepository.GetByUserName(username);
         }
 
-        public UserDTO CreateUser(UserDTO userDTO)
+        public User CreateUser(User user)
         {
-            var user = _userRepository.CreateUser(_mapper.Map<User>(userDTO));
-
-            return _mapper.Map<UserDTO>(user);
+           return _userRepository.CreateUser(user);
         }
 
         #endregion

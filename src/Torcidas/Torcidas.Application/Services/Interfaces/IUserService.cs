@@ -1,7 +1,7 @@
 ﻿using SampSharp.Entities.SAMP;
 
-using Torcidas.Core.DTOs;
 using Torcidas.Core.Components;
+using Torcidas.Domain.Entities;
 
 namespace Torcidas.Application.Services.Interfaces
 {
@@ -9,8 +9,8 @@ namespace Torcidas.Application.Services.Interfaces
     {
 
         #region Entity Framework Methods
-        UserDTO GetUserByUserName(string username);
-        UserDTO CreateUser(UserDTO userDTO);
+        User GetUserByUserName(string username);
+        User CreateUser(User userDTO);
 
         #endregion
 
