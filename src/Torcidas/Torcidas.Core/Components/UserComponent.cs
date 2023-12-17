@@ -11,15 +11,9 @@ namespace Torcidas.Core.Components
 
         public bool IsLogged { get; set; }
 
-        public bool HasLegacyPassword { get; set; }
-
         public DateTime GlobalExecutionTimeControl { get; set; }
 
         public DateTime ExecutionTimeControl { get; set; }
-
-        public DateTime GangExpulsionTime { get; set; }
-
-        public bool HasIndicator {  get; set; }
 
         public UserComponent(User user)
         {
