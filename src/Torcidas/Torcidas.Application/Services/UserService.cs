@@ -5,6 +5,7 @@ using Torcidas.Core.Components;
 using Torcidas.Domain.Entities;
 using Torcidas.Infra.Repositories.Interfaces;
 using Torcidas.Application.Services.Interfaces;
+using Torcidas.Core.Structs;
 
 namespace Torcidas.Application.Services
 {
@@ -68,7 +69,7 @@ namespace Torcidas.Application.Services
 
             if (parametro.Length > 24)
             {
-                _globalManagerService.SendPlayerErrorMessage(player, "O termo de busca so pode ter no maximo 24 caracteres.");
+                _globalManagerService.SendPlayerErrorMessage(player, MessageStruct.SearchParameterMaxSizeMessage);
                 return;
             }
 
@@ -97,7 +98,7 @@ namespace Torcidas.Application.Services
 
             if (playersResults.Count > 0) player.SendClientMessage(Color.Azure, $"Resultado: {playersResults.Count} membro(s) encontrados.");
 
-            else player.SendClientMessage(Color.White, "* Nao foi encontrado nenhum player com o termo informado.");
+            else player.SendClientMessage(Color.White, MessageStruct.UserNotFoundWithParameterMessage);
 
         }
 
@@ -118,7 +119,7 @@ namespace Torcidas.Application.Services
             {
                 if (player.Position.X != startPositionX || player.Position.Y != startPositionY || player.Position.Z != startPositionZ)
                 {
-                    _globalManagerService.SendPlayerErrorMessage(player, "Voce se moveu");
+                    _globalManagerService.SendPlayerErrorMessage(player, MessageStruct.YouMovedMessage);
                 }
                 else
                 {
@@ -141,13 +142,13 @@ namespace Torcidas.Application.Services
 
             if (playerTarget == null)
             {
-                _globalManagerService.SendPlayerErrorMessage(player, "O player informado nao foi encontrado.");
+                _globalManagerService.SendPlayerErrorMessage(player, MessageStruct.UserNotFoundMessage);
                 return;
             }
 
             if (player.Name.Equals(playerTarget.Name))
             {
-                _globalManagerService.SendPlayerErrorMessage(player, "Voce nao pode enviar uma mensagem privada para si mesmo");
+                _globalManagerService.SendPlayerErrorMessage(player, MessageStruct.ForbiddenToSendMessageToYourselfMessage);
                 return;
             }
 
