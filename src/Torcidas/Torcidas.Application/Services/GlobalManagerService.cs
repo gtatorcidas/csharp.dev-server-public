@@ -106,36 +106,36 @@ namespace Torcidas.Application.Services
 
         }
 
-        public bool CheckPlayerGlobalExecutionTimeAvailability(UserComponent user, double time = 40)
+        public bool CheckPlayerGlobalExecutionTimeAvailability(UserComponent userComponent, double time = 40)
         {
-            var player = user.GetComponent<Player>();
+            var player = userComponent.GetComponent<Player>();
 
-            if (!(DateTime.Now - user.GlobalExecutionTimeControl > TimeSpan.FromSeconds(time)))
+            if (!(DateTime.Now - userComponent.SessionProperties.GlobalExecutionTimeControl > TimeSpan.FromSeconds(time)))
             {
-                var tempoRestante = (int)(TimeSpan.FromSeconds(time) - (DateTime.Now - user.ExecutionTimeControl)).TotalSeconds;
+                var tempoRestante = (int)(TimeSpan.FromSeconds(time) - (DateTime.Now - userComponent.SessionProperties.ExecutionTimeControl)).TotalSeconds;
                 if (tempoRestante == 0) return true;
                 SendPlayerServerMessage(player, $"Aguarde {tempoRestante}s para usar este comando.");
                 return false;
             }
 
-            user.GlobalExecutionTimeControl = DateTime.Now;
+            userComponent.SessionProperties.GlobalExecutionTimeControl = DateTime.Now;
 
             return true;
         }
 
-        public bool CheckPlayerLocalExecutionTimeAvailability(UserComponent user, double time = 40)
+        public bool CheckPlayerLocalExecutionTimeAvailability(UserComponent userComponent, double time = 40)
         {
-            var player = user.GetComponent<Player>();
+            var player = userComponent.GetComponent<Player>();
 
-            if (!(DateTime.Now - user.ExecutionTimeControl > TimeSpan.FromSeconds(time)))
+            if (!(DateTime.Now - userComponent.SessionProperties.ExecutionTimeControl > TimeSpan.FromSeconds(time)))
             {
-                var tempoRestante = (int)(TimeSpan.FromSeconds(time) - (DateTime.Now - user.ExecutionTimeControl)).TotalSeconds;
+                var tempoRestante = (int)(TimeSpan.FromSeconds(time) - (DateTime.Now - userComponent.SessionProperties.ExecutionTimeControl)).TotalSeconds;
                 if (tempoRestante == 0) return true;
                 SendPlayerServerMessage(player, $"Aguarde {tempoRestante}s para usar este comando.");
                 return false;
             }
 
-            user.ExecutionTimeControl = DateTime.Now;
+            userComponent.SessionProperties.ExecutionTimeControl = DateTime.Now;
 
             return true;
         }

@@ -54,7 +54,7 @@ namespace Torcidas.Application.Services
                 soundId = 1057;
                 spawnPosition = new Vector3(1123.91, -2036.79, 69.886);
                 var component = player.AddComponent<UserComponent>(user);
-                component.IsLogged = true;
+                component.SessionProperties.IsLogged = true;
             }
             else
             {
@@ -98,7 +98,7 @@ namespace Torcidas.Application.Services
                 .Select(x => x.GetComponent<UserComponent>())
                 .Where(x => x?.GetUser() != null).ToList();
 
-            foreach (var userComponent in usersList.Where(userComponent => userComponent.IsLogged))
+            foreach (var userComponent in usersList.Where(userComponent => userComponent.SessionProperties.IsLogged))
             {
                 _serverHudService.UpdateHudTickerHandler(userComponent, playersList.Length);
             }
