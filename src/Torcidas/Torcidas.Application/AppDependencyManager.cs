@@ -14,12 +14,10 @@ namespace Torcidas.Application
         {
 
             services.AddEntityFrameworkNpgsql()
-                .AddDbContext<IDbContext, AppDbContext>(options => options
+                .AddPooledDbContextFactory<AppDbContext>(options => options
                     .UseNpgsql(databaseConnection)
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                  )
-                .AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>))
-                .AddScoped(typeof(IUserRepository), typeof(UserRepository));
+                .AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
         }
 
         #endregion
