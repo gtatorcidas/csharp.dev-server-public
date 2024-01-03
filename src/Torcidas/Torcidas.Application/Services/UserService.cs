@@ -1,11 +1,11 @@
 ﻿using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 
+using Torcidas.Core.Structs;
 using Torcidas.Core.Components;
 using Torcidas.Domain.Entities;
 using Torcidas.Infra.Repositories.Interfaces;
 using Torcidas.Application.Services.Interfaces;
-using Torcidas.Core.Structs;
 
 namespace Torcidas.Application.Services
 {
@@ -14,7 +14,7 @@ namespace Torcidas.Application.Services
 
         #region Properties
 
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IGlobalManagerService _globalManagerService;
         private readonly IEntityManager _entityManager;
         private readonly ITimerService _timerService;
@@ -23,10 +23,10 @@ namespace Torcidas.Application.Services
 
         #region Constructors
 
-        public UserService(IUserRepository userRepository, IGlobalManagerService globalManagerService, 
+        public UserService(IUnitOfWork unitOfWork, IGlobalManagerService globalManagerService, 
             IEntityManager entityManager, ITimerService timerService)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
             _globalManagerService = globalManagerService;
             _entityManager = entityManager;
             _timerService = timerService;
@@ -38,12 +38,12 @@ namespace Torcidas.Application.Services
 
         public User GetUserByUserName(string username)
         {
-           return _userRepository.GetByUserName(username);
+           return _unitOfWork.UserRepository.GetByUserName(username);
         }
 
         public User CreateUser(User user)
         {
-           return _userRepository.CreateUser(user);
+           return _unitOfWork.UserRepository.CreateUser(user);
         }
 
         #endregion
