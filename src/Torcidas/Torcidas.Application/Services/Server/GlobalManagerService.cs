@@ -3,16 +3,17 @@ using SampSharp.Entities.SAMP;
 
 using Torcidas.Core.Components;
 using Torcidas.Application.Services.Interfaces;
+using Torcidas.Core.Components.Users;
 
-namespace Torcidas.Application.Services
+namespace Torcidas.Application.Services.Server
 {
     public class GlobalManagerService : IGlobalManagerService
     {
         #region Properties
-        
+
         private readonly IEntityManager _entityManager;
         private readonly IWorldService _worldService;
-        
+
         #endregion
 
         #region Constructor
@@ -38,7 +39,7 @@ namespace Torcidas.Application.Services
             player.SendClientMessage(Color.LightBlue, newText);
 
         }
-        
+
         public void SendPlayerNearByMessage(Player player, float range, Color textColor, string message)
         {
             // UserComponent somente é adicionado para players que possuem conta no banco de dados no momento de conexão no server
@@ -49,7 +50,7 @@ namespace Torcidas.Application.Services
             var results = users.Where(x => IsPlayerNearByPlayer(player, x.GetComponent<Player>(), range));
 
             // Percorre esses usuários filtrados manda a mensagem para cada um deles
-            foreach(var user in results)
+            foreach (var user in results)
             {
                 var targetPlayer = user.GetComponent<Player>();
 

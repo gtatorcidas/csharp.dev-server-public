@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
+using SampSharp.Entities.SAMP;
 
-namespace Torcidas.Core.Helpers
+namespace Torcidas.Core.Utils
 {
-    public static class EnumHelper
+    public static class Extensions
     {
         public static string GetDescription(this Enum enumValue)
         {
@@ -17,6 +18,12 @@ namespace Torcidas.Core.Helpers
             }
 
             return enumValue.ToString();
+        }
+        
+        public static string ToHexColor(this Color color)
+        {
+            var colorString = color.ToString();
+            return colorString!.Trim('{', '}');
         }
     }
 }

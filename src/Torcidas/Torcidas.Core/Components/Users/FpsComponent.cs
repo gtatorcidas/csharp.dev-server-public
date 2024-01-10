@@ -2,7 +2,7 @@
 using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 
-namespace Torcidas.Core.Components
+namespace Torcidas.Core.Components.Users
 {
     public class FpsComponent : Component
     {
@@ -34,5 +34,10 @@ namespace Torcidas.Core.Components
         {
             FpsTextDraw.Destroy();
         }
+
+        public void HideFpsTextDraw() => FpsTextDraw.Hide();
+        
+        public void ShowFpsTextDraw() => FpsTextDraw.Show();
+        
     }
 }

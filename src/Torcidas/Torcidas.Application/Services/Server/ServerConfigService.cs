@@ -2,10 +2,12 @@
 using SampSharp.Entities.SAMP;
 
 using Torcidas.Domain.Enums;
-using Torcidas.Core.Components;
+using Torcidas.Core.Components.Users;
 using Torcidas.Application.Services.Interfaces;
+using Torcidas.Core.Components.Server;
+using Torcidas.Core.Entities;
 
-namespace Torcidas.Application.Services
+namespace Torcidas.Application.Services.Server
 {
     public class ServerConfigService : IServerConfigService
     {
@@ -107,6 +109,16 @@ namespace Torcidas.Application.Services
         public void OnGameModeInitHandler()
         {
             _serverService.UsePlayerPedAnims();
+            
+            var serverComponent = new GlobalServerComponent();
+            var entity = TorcidasEntities.GetGlobalServerObject(serverComponent.Entity.Handle);
+            _entityManager.Create(entity);
+            
+            var globalServerComponent = _entityManager.AddComponent<GlobalServerComponent>(entity);
+            
+            // TODO: Add Any Global Component Here
+            // globalServerComponent
+            //     .AddComponent<AnyGlobalComponent>();
         }
 
         #endregion

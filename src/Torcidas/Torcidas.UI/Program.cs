@@ -15,7 +15,6 @@ namespace Torcidas.UI
         /// </summary>
         static void Main(string[] args)
         {
-
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             new GameModeBuilder()

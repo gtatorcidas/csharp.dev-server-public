@@ -2,10 +2,10 @@
 using SampSharp.Entities.SAMP;
 using SampSharp.Entities.SAMP.Commands;
 
-using Torcidas.Core.Components;
+using Torcidas.Core.Components.Users;
 using Torcidas.Application.Services.Interfaces;
 
-namespace Torcidas.UI.Systems.User
+namespace Torcidas.UI.Systems.Users
 {
     /// <summary>
     /// Sistema responsável por gerenciar as ações relacionadas ao usuário.
@@ -38,33 +38,33 @@ namespace Torcidas.UI.Systems.User
         /// <summary>
         /// Comando para exibir os dados da conta do usuário.
         /// </summary>
-        /// <param name="user">O usuário que está executando o comando é injetado automaticamente.</param>
+        /// <param name="userComponent">O usuário que está executando o comando é injetado automaticamente.</param>
         [PlayerCommand("dados")]
-        public void DataComand(UserComponent user) => _userService.DataCommandHandler(user);
+        public void DataComand(UserComponent userComponent) => _userService.DataCommandHandlerAsync(userComponent);
 
         /// <summary>
         /// Comando para buscar uma lista de jogadores com base no parâmetro.
         /// </summary>
-        /// <param name="user">O usuário que está executando o comando é injetado automaticamente.</param>
+        /// <param name="userComponent">O usuário que está executando o comando é injetado automaticamente.</param>
         /// <param name="parametro">O parâmetro a ser buscado.</param>
         [PlayerCommand("id")]
-        public void IdentifyComand(UserComponent user, string parametro) => _userService.IdentifyComandHandler(user, parametro);
+        public void IdentifyComand(UserComponent userComponent, string parametro) => _userService.IdentifyComandHandlerAsync(userComponent, parametro);
 
         /// <summary>
         /// Comando para permitir o usuário se matar
         /// </summary>
-        /// <param name="user">O usuário que está executando o comando é injetado automaticamente.</param>
+        /// <param name="userComponent">O usuário que está executando o comando é injetado automaticamente.</param>
         [PlayerCommand("kill")]
-        public void KillMeComand(UserComponent user) => _userService.KillMeComandHandler(user);
+        public void KillMeComand(UserComponent userComponent) => _userService.KillMeComandHandlerAsync(userComponent);
 
         /// <summary>
         /// Comando para enviar uma mensagem privada para outro jogador.
         /// </summary>
-        /// <param name="user">O usuário que está executando o comando é injetado automaticamente.</param>
+        /// <param name="userComponent">O usuário que está executando o comando é injetado automaticamente.</param>
         /// <param name="playerId">O ID/Nick do jogador para quem a mensagem será enviada.</param>
         /// <param name="mensagem">A mensagem a ser enviada.</param>
         [PlayerCommand("pm")]
-        public void PrivateMessageCommand(UserComponent user, Player playerId, string mensagem) => _userService.PrivateMessageCommandHandler(user, playerTarget: playerId, mensagem);
+        public void PrivateMessageCommand(UserComponent userComponent, Player playerId, string mensagem) => _userService.PrivateMessageCommandHandlerAsync(userComponent, playerTarget: playerId, mensagem);
 
         #endregion
 

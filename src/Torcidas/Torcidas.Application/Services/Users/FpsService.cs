@@ -1,10 +1,11 @@
 ﻿using SampSharp.Entities.SAMP;
 
 using Torcidas.Domain.Enums;
-using Torcidas.Core.Components;
+using Torcidas.Core.Components.Users;
+using Torcidas.Core.Components.Server;
 using Torcidas.Application.Services.Interfaces;
 
-namespace Torcidas.Application.Services
+namespace Torcidas.Application.Services.Users
 {
     public class FpsService: IFpsService
     {
@@ -12,7 +13,7 @@ namespace Torcidas.Application.Services
         private readonly IWorldService _worldService;
         #endregion
 
-        #region Constructors
+        #region Constructor
         public FpsService(IWorldService worldService) { 
         
             _worldService = worldService;

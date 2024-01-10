@@ -2,7 +2,7 @@
 
 using Torcidas.Application.Services.Interfaces;
 
-namespace Torcidas.Application.Services
+namespace Torcidas.Application.Services.Tools
 {
     public class LoggerService : ILoggerService
     {
@@ -15,7 +15,7 @@ namespace Torcidas.Application.Services
 
         public LoggerService(ILogger<LoggerService> logger)
         {
-           _logger = logger;
+            _logger = logger;
         }
 
         #endregion

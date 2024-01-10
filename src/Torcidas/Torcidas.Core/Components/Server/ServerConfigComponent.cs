@@ -2,7 +2,7 @@
 
 using Torcidas.Domain.Enums;
 
-namespace Torcidas.Core.Components
+namespace Torcidas.Core.Components.Server
 {
     public class ServerConfigComponent : Component
     {

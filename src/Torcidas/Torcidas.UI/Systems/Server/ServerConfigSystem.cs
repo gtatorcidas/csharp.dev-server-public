@@ -1,5 +1,4 @@
-﻿using System;
-using SampSharp.Entities;
+﻿using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 
 using Torcidas.Application.Services.Interfaces;

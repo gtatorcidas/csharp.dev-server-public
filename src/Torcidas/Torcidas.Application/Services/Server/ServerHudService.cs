@@ -1,9 +1,10 @@
 using SampSharp.Entities.SAMP;
 
-using Torcidas.Core.Components;
+using Torcidas.Core.Components.Users;
+using Torcidas.Core.Components.Server;
 using Torcidas.Application.Services.Interfaces;
 
-namespace Torcidas.Application.Services
+namespace Torcidas.Application.Services.Server
 {
     public class ServerHudService: IServerHudService
     {

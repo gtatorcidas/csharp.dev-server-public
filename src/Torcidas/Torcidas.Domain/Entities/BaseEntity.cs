@@ -3,7 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Torcidas.Domain.Entities
 {
-    public abstract class BaseEntity
+    public interface IBaseEntity {
+        int Id { get; set; }
+        DateTime CreatedAt { get; set; }
+        DateTime UpdatedAt { get; set; }
+    }
+
+    public abstract class BaseEntity: IBaseEntity
     {
         #region Properties
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

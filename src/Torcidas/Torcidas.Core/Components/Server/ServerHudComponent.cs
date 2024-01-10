@@ -4,7 +4,7 @@ using SampSharp.Entities.SAMP;
 
 using Torcidas.Core.Utils;
 
-namespace Torcidas.Core.Components
+namespace Torcidas.Core.Components.Server
 {
     public class ServerHudComponent: Component
     {

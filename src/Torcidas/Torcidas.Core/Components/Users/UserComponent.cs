@@ -3,7 +3,7 @@ using SampSharp.Entities.SAMP;
 
 using Torcidas.Domain.Entities;
 
-namespace Torcidas.Core.Components
+namespace Torcidas.Core.Components.Users
 {
 
     public class UserSessionProperties {
@@ -13,11 +13,11 @@ namespace Torcidas.Core.Components
 
         public DateTime ExecutionTimeControl { get; set; }
     }
-
+    
     public class UserComponent: Component
     {
         private User User { get; set; }
-
+        
         public UserSessionProperties SessionProperties { get; set; } = new();
 
         public UserComponent(User user)

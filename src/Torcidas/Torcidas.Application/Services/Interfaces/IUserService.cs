@@ -1,6 +1,7 @@
 ﻿using SampSharp.Entities.SAMP;
 
 using Torcidas.Core.Components;
+using Torcidas.Core.Components.Users;
 using Torcidas.Domain.Entities;
 
 namespace Torcidas.Application.Services.Interfaces
@@ -16,10 +17,10 @@ namespace Torcidas.Application.Services.Interfaces
 
         #region Handlers
 
-        void DataCommandHandler(UserComponent userComponent);
-        void IdentifyComandHandler(UserComponent userComponent, string parametro);
-        void KillMeComandHandler(UserComponent userComponent);
-        void PrivateMessageCommandHandler(UserComponent userComponent, Player? playerTarget, string mensagem);
+        Task DataCommandHandlerAsync(UserComponent userComponent);
+        Task IdentifyComandHandlerAsync(UserComponent userComponent, string parametro);
+        Task KillMeComandHandlerAsync(UserComponent userComponent);
+        Task PrivateMessageCommandHandlerAsync(UserComponent userComponent, Player? playerTarget, string mensagem);
 
         #endregion
 

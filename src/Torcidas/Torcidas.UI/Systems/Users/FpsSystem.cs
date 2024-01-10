@@ -1,10 +1,10 @@
 ﻿using SampSharp.Entities;
 using SampSharp.Entities.SAMP;
 
-using Torcidas.Core.Components;
+using Torcidas.Core.Components.Server;
 using Torcidas.Application.Services.Interfaces;
 
-namespace Torcidas.UI.Systems.User
+namespace Torcidas.UI.Systems.Users
 {
     /// <summary>
     /// Sistema responsável por gerenciar a taxa de quadros por segundo (FPS) dos jogadores.
